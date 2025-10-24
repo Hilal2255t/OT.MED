@@ -106,7 +106,7 @@
     }
 
     .welcome-right {
-        background: rgba(139, 92, 246, 0.08);
+        background: #f9fafb;
         padding: 60px 50px;
         display: flex;
         flex-direction: column;
@@ -114,18 +114,20 @@
     }
 
     .info-card {
-        background: rgba(139, 92, 246, 0.12);
-        border: 1px solid rgba(139, 92, 246, 0.2);
+        background: white;
+        border: 1px solid rgba(139, 92, 246, 0.15);
         border-radius: 20px;
         padding: 30px;
         margin-bottom: 40px;
+        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.08);
     }
 
     .info-card p {
-        color: rgba(255,255,255,0.9);
+        color: #4b5563;
         font-size: 1.05em;
-        line-height: 1.6;
+        line-height: 1.7;
         margin-bottom: 20px;
+        font-weight: 500;
     }
 
     .info-features {
@@ -138,8 +140,9 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        color: rgba(255,255,255,0.85);
+        color: #374151;
         font-size: 0.95em;
+        font-weight: 500;
     }
 
     .info-feature::before {
@@ -163,24 +166,27 @@
     }
 
     .form-group-login label {
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: 10px;
-        color: white;
+        color: #1f2937;
         font-size: 0.95em;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.3px;
     }
 
     .form-group-login input {
         padding: 16px 20px;
-        border: 2px solid rgba(139, 92, 246, 0.3);
+        border: 2px solid rgba(139, 92, 246, 0.25);
         border-radius: 12px;
-        font-size: 1em;
-        background: rgba(255,255,255,0.95);
+        font-size: 1.05em;
+        background: white;
+        color: #1f2937;
         transition: all 0.3s;
+        font-weight: 500;
     }
 
     .form-group-login input::placeholder {
-        color: rgba(0,0,0,0.4);
+        color: #9ca3af;
+        font-weight: 400;
     }
 
     .form-group-login input:focus {
@@ -216,10 +222,11 @@
 
     .login-tip {
         text-align: center;
-        color: rgba(255,255,255,0.6);
+        color: #6b7280;
         font-size: 0.85em;
         margin-top: 15px;
         line-height: 1.5;
+        font-weight: 500;
     }
 
     @media (max-width: 1024px) {
@@ -1158,7 +1165,7 @@
             return;
         }
 
-        var html = '<table><thead><tr><th>#</th><th>Name</th><th>Dosage</th><th>Code</th><th>Stock</th><th>Qty</th><th>Location</th><th>Expiration</th><th>Days</th><th>Status</th><th>Added By</th><th>Last Edit</th><th>Actions</th></tr></thead><tbody>';
+        var html = '<table><thead><tr><th>#</th><th>Name</th><th>Dosage</th><th>Code</th><th>Stock</th><th>Qty</th><th>Location</th><th>Expiration</th><th>Days</th><th>Status</th><th>Last Edit</th><th>Actions</th></tr></thead><tbody>';
 
         for (var i = 0; i < filtered.length; i++) {
             var m = filtered[i];
@@ -1168,7 +1175,6 @@
             var rc = days < 0 ? 'expired' : days <= 30 ? 'expiring-soon' : '';
             var daysText = days < 0 ? Math.abs(days) + ' ago' : days === 0 ? 'Today' : days + ' days';
             
-            var addedBy = (m.addedBy || 'N/A') + (m.addedById ? ' (' + m.addedById + ')' : '');
             var lastEdit = m.editedBy ? (m.editedBy + ' (' + m.editedById + ')') : '—';
 
             html += '<tr class="' + rc + '">';
@@ -1182,7 +1188,6 @@
             html += '<td>' + new Date(m.expirationDate).toLocaleDateString() + '</td>';
             html += '<td>' + daysText + '</td>';
             html += '<td><span class="status-badge status-' + st.c + '">' + st.t + '</span></td>';
-            html += '<td style="font-size:0.85em;">' + addedBy + '</td>';
             html += '<td style="font-size:0.85em;">' + lastEdit + '</td>';
             html += '<td>';
             html += '<button class="action-btn edit-btn" onclick="edit(' + idx + ')">✏️</button>';
