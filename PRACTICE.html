@@ -1415,7 +1415,7 @@
             return;
         }
 
-        var html = '<div class="history-table-wrapper"><table class="history-table"><thead><tr><th>#</th><th>Date</th><th>Type</th><th>Med</th><th>Dosage</th><th>Code</th><th>Amount</th><th>Patient</th><th>ID</th><th>Staff</th><th>Prev</th><th>New</th><th>Location</th><th>Details</th></tr></thead><tbody>';
+        var html = '<div class="history-table-wrapper"><table class="history-table"><thead><tr><th>#</th><th>Date</th><th>Type</th><th>Med</th><th>Dosage</th><th>Code</th><th>Amount</th><th>Patient</th><th>ID</th><th>Staff Name (ID)</th><th>Prev</th><th>New</th><th>Location</th><th>Details</th></tr></thead><tbody>';
 
         for (var i = 0; i < filtered.length; i++) {
             var h = filtered[i];
@@ -1423,6 +1423,7 @@
             var tt = '';
             var pi = '';
             var details = '';
+            var staffInfo = (h.staffName || 'N/A') + ' (' + (h.staffID || 'N/A') + ')';
             
             if (h.type === 'withdraw') {
                 tt = '📤 WITHDRAW';
@@ -1453,7 +1454,7 @@
             html += '<td>' + h.pharmacyCode + '</td>';
             html += '<td><strong>' + (h.amount || 0) + '</strong></td>';
             html += pi;
-            html += '<td>' + (h.staffName || 'N/A') + '</td>';
+            html += '<td>' + staffInfo + '</td>';
             html += '<td>' + (h.previousQuantity || 0) + '</td>';
             html += '<td>' + (h.newQuantity || 0) + '</td>';
             html += '<td>' + h.location + '</td>';
