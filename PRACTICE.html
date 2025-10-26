@@ -1519,13 +1519,21 @@
             }
         }
         
-        hist = newHist;
-        saveData();
-        displayHist();
-        alert('✅ Deleted ' + toDel.length + ' transactions');
-    }
+        // Save before page unload
+    window.addEventListener('beforeunload', function(e) {
+        saveMedications();
+    });
+
+    // Prevent accidental data loss
+    window.addEventListener('beforeunload', function(e) {
+        if (medications.length > 0) {
+            e.preventDefault();
+            e.returnValue = '';
+        }
+    });
 </script>
 ```
 
 </body>
 </html>
+
