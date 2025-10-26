@@ -1530,10 +1530,16 @@
             e.preventDefault();
             e.returnValue = '';
         }
-    });
+        
+        hist = newHist;
+        saveData();
+        displayHist();
+        alert('✅ Deleted ' + toDel.length + ' transactions');
+    }
 </script>
 ```
 
 </body>
 </html>
+
 
